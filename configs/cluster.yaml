@@ -1,0 +1,10 @@
+# Single-GPU (A100/H100 80GB) jobs. Teacher and student MUST share a tokenizer.
+# Llama models are gated: accept the license on HF and `huggingface-cli login` on the login node.
+inherit: default.yaml
+exp_name: llama8b_to_1b
+teacher: {model: meta-llama/Llama-3.1-8B, dtype: bfloat16}
+student: {model: meta-llama/Llama-3.2-1B, dtype: bfloat16, train_dtype: float32}  # fp32 master weights + bf16 autocast
+prompts: {n_train: 10000, n_eval: 500}
+generation: {max_new_tokens: 256, batch_size: 64}
+train: {epochs: 1, batch_size: 8, grad_accum: 4, lr: 1.0e-5, gradient_checkpointing: true, save_model: false}
+eval: {ppl_batch_size: 16}

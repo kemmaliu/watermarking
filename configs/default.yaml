@@ -1,0 +1,52 @@
+# Every knob lives here; machine configs `inherit: default.yaml` and override what differs.
+exp_name: default
+output_dir: runs
+seed: 0
+device: auto                 # auto = cuda > mps > cpu
+
+teacher: {model: HuggingFaceTB/SmolLM2-360M, dtype: float32}
+student: {model: HuggingFaceTB/SmolLM2-135M, dtype: float32, train_dtype: float32}  # must share tokenizer
+
+watermarks: [gumbel, inverse]
+lambdas: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]  # 0.0 = plain-distillation baseline
+watermark:
+  key: 15485863              # secret key; known to the trainer in Part 1
+  seed_scheme: context       # context: seed = H(key, previous h tokens) | position: seed = H(key, t)
+  context_width: 2           # h
+
+prompts:
+  source: hf                 # hf | file (txt one-per-line or jsonl)
+  dataset: allenai/c4
+  subset: realnewslike
+  split: validation
+  text_field: text
+  prompt_tokens: 50
+  min_extra_tokens: 0
+  n_train: 2000              # teacher watermarked samples the student trains on
+  n_eval: 200                # held-out prompts for detection / quality
+
+generation: {max_new_tokens: 128, batch_size: 32, temperature: 1.0}
+
+train:
+  epochs: 1
+  max_steps: null            # overrides epochs if set
+  batch_size: 8
+  grad_accum: 1
+  lr: 2.0e-5
+  warmup_frac: 0.05
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+  amp: bf16                  # CUDA only
+  gradient_checkpointing: false
+  stat_loss: match           # match: (E_student[T]/n - T_teacher(Y)/n)^2 | max: -E_student[T]/n
+  stat_chunk: 256            # rows of [n, V] score matrix materialized at once
+  train_on_prompt: false
+  log_every: 10
+  save_model: false
+  data_seed: 0
+
+eval:
+  samples_per_prompt: 1
+  alpha: 0.01                # detection threshold on p-values
+  teacher_ppl: true
+  ppl_batch_size: 16

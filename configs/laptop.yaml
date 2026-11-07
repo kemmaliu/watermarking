@@ -1,0 +1,7 @@
+# Real models small enough for a 16GB M-series Mac (SmolLM2 360M teacher -> 135M student).
+inherit: default.yaml
+exp_name: laptop_smollm
+prompts: {n_train: 400, n_eval: 64}
+generation: {max_new_tokens: 64, batch_size: 16}
+train: {epochs: 1, batch_size: 4, lr: 5.0e-5}
+eval: {ppl_batch_size: 8}

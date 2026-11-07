@@ -1,0 +1,10 @@
+# Smoke test: random tiny GPT-2, local prompts, runs end-to-end in ~1-2 min on a laptop CPU/MPS.
+inherit: default.yaml
+exp_name: tiny
+teacher: {model: sshleifer/tiny-gpt2}
+student: {model: sshleifer/tiny-gpt2}
+lambdas: [0.0, 0.5, 0.9]
+prompts: {source: file, path: configs/prompts/smoke.txt, prompt_tokens: 8, n_train: 32, n_eval: 16, allow_reuse: true}
+generation: {max_new_tokens: 24, batch_size: 16}
+train: {epochs: 2, batch_size: 8, lr: 1.0e-3, log_every: 2}
+eval: {alpha: 0.05, ppl_batch_size: 16}
