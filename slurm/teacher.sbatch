@@ -8,8 +8,8 @@
 #SBATCH --time=06:00:00
 #SBATCH --output=slurm/logs/%x-%j.out
 # #SBATCH --constraint=gpu80          # e.g. Della: request 80GB A100s
-# #SBATCH --account=YOUR_ACCOUNT
-# #SBATCH --partition=YOUR_PARTITION
+#SBATCH --account=sur_lab
+#SBATCH --partition=gpu
 set -euo pipefail
 CONFIG=${1:?usage: sbatch slurm/teacher.sbatch configs/cluster.yaml [overrides...]}; shift
 source slurm/env.sh

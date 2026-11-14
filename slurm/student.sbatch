@@ -8,8 +8,8 @@
 #SBATCH --time=08:00:00
 #SBATCH --output=slurm/logs/%x-%A_%a.out
 # #SBATCH --constraint=gpu80
-# #SBATCH --account=YOUR_ACCOUNT
-# #SBATCH --partition=YOUR_PARTITION
+#SBATCH --account=sur_lab
+#SBATCH --partition=gpu
 # One array task = one (watermark, lambda); list them with `python -m wmdistill jobs --config ...`.
 # Re-submitting is safe: finished jobs (metrics.json present) are skipped.
 set -euo pipefail

@@ -5,6 +5,8 @@
 #SBATCH --mem=4G
 #SBATCH --time=00:15:00
 #SBATCH --output=slurm/logs/%x-%j.out
+#SBATCH --account=sur_lab
+
 set -euo pipefail
 CONFIG=${1:?usage: sbatch slurm/aggregate.sbatch configs/cluster.yaml [overrides...]}; shift
 source slurm/env.sh
