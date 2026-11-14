@@ -1,0 +1,37 @@
+{
+  "gumbel": {
+    "teacher_watermarked": {
+      "n_samples": 20,
+      "detect_rate": 1.0,
+      "alpha": 0.01,
+      "median_pvalue": 1.2702167266602485e-47,
+      "mean_log10_pvalue": -65.436353446033,
+      "mean_z_per_token": 2.149728717404951,
+      "mean_scored_tokens": 142.9,
+      "rep3_rate": 0.4448818897637795,
+      "teacher_ppl": 4.326948508933435
+    },
+    "teacher_plain": {
+      "n_samples": 20,
+      "detect_rate": 0.0,
+      "alpha": 0.01,
+      "median_pvalue": 0.6554723437045673,
+      "mean_log10_pvalue": -0.264385783910244,
+      "mean_z_per_token": -0.023564247689062644,
+      "mean_scored_tokens": 246.15,
+      "rep3_rate": 0.03799212598425196,
+      "teacher_ppl": 11.797494320022153
+    },
+    "student_base": {
+      "n_samples": 20,
+      "detect_rate": 0.0,
+      "alpha": 0.01,
+      "median_pvalue": 0.45084238760275835,
+      "mean_log10_pvalue": -0.4516673060047777,
+      "mean_z_per_token": 0.011268228579010036,
+      "mean_scored_tokens": 249.15,
+      "rep3_rate": 0.026968503937007865,
+      "teacher_ppl": 30.287355471790573
+    }
+  }
+}

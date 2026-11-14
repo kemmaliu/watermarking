@@ -1,0 +1,72 @@
+{
+  "gumbel": {
+    "teacher_watermarked": {
+      "n_samples": 200,
+      "detect_rate": 1.0,
+      "alpha": 0.01,
+      "median_pvalue": 2.523128340817082e-58,
+      "mean_log10_pvalue": -58.46309814645134,
+      "mean_z_per_token": 2.8082788198723283,
+      "mean_scored_tokens": 87.41,
+      "rep3_rate": 0.32087301587301587,
+      "teacher_ppl": 9.468881206006863
+    },
+    "teacher_plain": {
+      "n_samples": 200,
+      "detect_rate": 0.02,
+      "alpha": 0.01,
+      "median_pvalue": 0.5084159636693234,
+      "mean_log10_pvalue": -0.42816176805935896,
+      "mean_z_per_token": -0.0026501778962018697,
+      "mean_scored_tokens": 126.085,
+      "rep3_rate": 0.014325396825396828,
+      "teacher_ppl": 23.098542400494864
+    },
+    "student_base": {
+      "n_samples": 200,
+      "detect_rate": 0.015,
+      "alpha": 0.01,
+      "median_pvalue": 0.45433770312889604,
+      "mean_log10_pvalue": -0.5196322568082806,
+      "mean_z_per_token": 0.014155435798463914,
+      "mean_scored_tokens": 125.57,
+      "rep3_rate": 0.018492063492063494,
+      "teacher_ppl": 48.07111855738877
+    }
+  },
+  "inverse": {
+    "teacher_watermarked": {
+      "n_samples": 200,
+      "detect_rate": 0.99,
+      "alpha": 0.01,
+      "median_pvalue": 1.0824674490095276e-15,
+      "mean_log10_pvalue": -121.57613109161862,
+      "mean_z_per_token": 0.7227453254798684,
+      "mean_scored_tokens": 117.77,
+      "rep3_rate": 0.08035714285714285,
+      "teacher_ppl": 21.17706302164838
+    },
+    "teacher_plain": {
+      "n_samples": 200,
+      "detect_rate": 0.005,
+      "alpha": 0.01,
+      "median_pvalue": 0.49746892964250977,
+      "mean_log10_pvalue": -0.3829452800630604,
+      "mean_z_per_token": -0.006087308074173054,
+      "mean_scored_tokens": 126.085,
+      "rep3_rate": 0.014325396825396828,
+      "teacher_ppl": 23.09854173964028
+    },
+    "student_base": {
+      "n_samples": 200,
+      "detect_rate": 0.005,
+      "alpha": 0.01,
+      "median_pvalue": 0.49446583611080386,
+      "mean_log10_pvalue": -0.4405951493397058,
+      "mean_z_per_token": 0.001620630960537345,
+      "mean_scored_tokens": 125.57,
+      "rep3_rate": 0.018492063492063494,
+      "teacher_ppl": 48.071119015830675
+    }
+  }
+}
