@@ -10,7 +10,7 @@ python -m wmdistill prepare --download-models --config "$CONFIG" output_dir="$WM
 
 N=$(python -m wmdistill jobs --config "$CONFIG" "$@" | wc -l | tr -d ' ')
 T=$(sbatch --parsable slurm/teacher.sbatch "$CONFIG" "$@")
-S=$(sbatch --parsable --dependency=afterok:$T --array=0-$((N - 1)) slurm/student.sbatch "$CONFIG" "$@")
+S=$(sbatch --parsable --dependency=afterok:$T --array=0-$((N - 1))%4 slurm/student.sbatch "$CONFIG" "$@")
 A=$(sbatch --parsable --dependency=afterany:$S slurm/aggregate.sbatch "$CONFIG" "$@")
 echo "teacher=$T  students=$S (array 0-$((N - 1)))  aggregate=$A"
 echo "results -> $WMD_OUTPUT_DIR/<exp_name>/results.csv, lambda_sweep.png"
